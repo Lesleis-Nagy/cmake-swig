@@ -1,0 +1,10 @@
+# Files.
+output1.pdf
+output2.pdf
+
+# Directories.
+__pycache__
+main.dSYM
+cmake-build-debug
+cmake-build-release
+.idea
