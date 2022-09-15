@@ -1,4 +1,4 @@
-find_package(Python3 COMPONENTS Interpreter NumPy REQUIRED)
+find_package(Python COMPONENTS Interpreter NumPy REQUIRED)
 include_directories(${PYTHON_INCLUDE_PATH})
 
 find_package(SWIG 4.0 COMPONENTS python REQUIRED)
@@ -10,12 +10,12 @@ set(SRC lv.i)
 
 set_source_files_properties(${SRC} PROPERTIES CPLUSPLUS ON)
 
-swig_add_library(lvpy LANGUAGE python SOURCES ${SRC})
+swig_add_library(lvpy TYPE MODULE LANGUAGE python SOURCES ${SRC})
 
 target_link_libraries(lvpy
         PUBLIC lv
-               ${PYTHON_LIBRARY}
-               Python3::NumPy)
+               Python::Module
+               Python::NumPy)
 
 # See https://gitlab.kitware.com/cmake/cmake/-/issues/18003
 set_target_properties(lvpy PROPERTIES SWIG_USE_TARGET_INCLUDE_DIRECTORIES TRUE)
